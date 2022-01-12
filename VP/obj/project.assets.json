@@ -122,11 +122,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\PROG1\\VP\\VP\\VP.csproj",
+      "projectUniqueName": "C:\\PROG1\\VP\\VP\\VP.csproj",
       "projectName": "VP",
-      "projectPath": "c:\\PROG1\\VP\\VP\\VP.csproj",
+      "projectPath": "C:\\PROG1\\VP\\VP\\VP.csproj",
       "packagesPath": "C:\\Users\\olle.brinkwennberg\\.nuget\\packages\\",
-      "outputPath": "c:\\PROG1\\VP\\VP\\obj\\",
+      "outputPath": "C:\\PROG1\\VP\\VP\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -140,6 +140,7 @@
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
