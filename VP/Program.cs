@@ -6,17 +6,30 @@ Raylib.SetTargetFPS(60);
 
 Texture2D playerTexture = Raylib.LoadTexture("Circle.png");
 Rectangle player = new Rectangle(100, 50, playerTexture.width, playerTexture.height);
+bool menu = true;
 
 Rectangle Start = new Rectangle(100, 20, 100, 20);
 
 while (!Raylib.WindowShouldClose())
 {
+    if(menu == true)
+    {
     Raylib.BeginDrawing();
     Raylib.ClearBackground(Color.WHITE);
-    Raylib.DrawTexture(playerTexture, 50, 50, Color.BLACK);
+    Raylib.DrawRectangle(256, 192, 500, 100, Color.BLACK);
+    if(Raylib.IsKeyDown(KeyboardKey.KEY_ENTER))
+    {
+        menu = false;
+    }
 
     Raylib.EndDrawing();
+    }
+   
+    if(menu != true)
+    {
+    Raylib.BeginDrawing();
+    Raylib.ClearBackground(Color.WHITE);
+
+    Raylib.EndDrawing();
+    }
 }
-
-
-// https://www.one-tab.com/page/a0IvtKxNQ1eVaVlb74ObxA
