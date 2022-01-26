@@ -5,8 +5,10 @@ Raylib.InitWindow(1024, 768, "Game");
 Raylib.SetTargetFPS(60);
 
 Texture2D playerTexture = Raylib.LoadTexture("Circle.png");
-Rectangle player = new Rectangle(100, 50, playerTexture.width, playerTexture.height);
+//Rectangle player = new Rectangle(100, 50, playerTexture.width, playerTexture.height);
+Rectangle player = new Rectangle(100, 50, 25, 25);
 bool menu = true;
+
 
 Rectangle Start = new Rectangle(100, 20, 100, 20);
 
@@ -29,6 +31,7 @@ while (!Raylib.WindowShouldClose())
     {
     Raylib.BeginDrawing();
     Raylib.ClearBackground(Color.WHITE);
+    Raylib.DrawTexture(playerTexture, 256, 192, Color.BLACK);
 
     Raylib.EndDrawing();
     }
