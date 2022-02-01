@@ -13,6 +13,7 @@ Texture2D snakeTexture = Raylib.LoadTexture("Snake.png");
 Rectangle snake = new Rectangle(256, 192, snakeTexture.width, snakeTexture.height);
 
 bool menu = true;
+bool fightSelect = false;
 bool goblinFight = false;
 bool snakeFight = false;
 bool bossFight = false;
@@ -32,12 +33,13 @@ while (!Raylib.WindowShouldClose())
     if(Raylib.IsKeyDown(KeyboardKey.KEY_ENTER))
     {
         menu = false;
+        fightSelect = true;
     }
 
     Raylib.EndDrawing();
     }
    
-    if(menu != true)
+    if(fightSelect == true)
     {
     Raylib.BeginDrawing();
     
