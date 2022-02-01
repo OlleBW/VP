@@ -7,7 +7,16 @@ Raylib.SetTargetFPS(60);
 
 Texture2D playerTexture = Raylib.LoadTexture("Player.png");
 Rectangle player = new Rectangle(256, 192, playerTexture.width, playerTexture.height);
+Texture2D goblinTexture = Raylib.LoadTexture("Goblin.png");
+Rectangle goblin = new Rectangle(256, 192, goblinTexture.width, goblinTexture.height);
+Texture2D snakeTexture = Raylib.LoadTexture("Snake.png");
+Rectangle snake = new Rectangle(256, 192, snakeTexture.width, snakeTexture.height);
+
 bool menu = true;
+bool goblinFight = false;
+bool snakeFight = false;
+bool bossFight = false;
+
 float speed = 3f;
 Vector2 movement = new Vector2();
 
@@ -30,18 +39,32 @@ while (!Raylib.WindowShouldClose())
    
     if(menu != true)
     {
-
     Raylib.BeginDrawing();
+    
+    
     Raylib.ClearBackground(Color.WHITE);
     Raylib.DrawTexture(playerTexture, (int)player.x, (int)player.y, Color.WHITE);
     
     movement = ReadMovement(speed);
-
     player.x += movement.X;
     player.y += movement.Y;
 
+
+    Raylib.DrawTexture(goblinTexture, 256, 300, Color.WHITE);
+    Raylib.DrawTexture(snakeTexture, 768, 300, Color.WHITE);
+
     Raylib.EndDrawing();
     }
+
+    if(goblinFight == true)
+    {
+      Raylib.BeginDrawing();
+
+      Raylib.ClearBackground(Color.DARKBROWN);
+
+      Raylib.EndDrawing();
+    }
+
 
 
 static Vector2 ReadMovement(float speed)
