@@ -58,13 +58,24 @@ while (!Raylib.WindowShouldClose())
     Raylib.EndDrawing();
     }
 
+    if(fightSelect == true)
+    {
+      if(Raylib.CheckCollisionRecs(player, goblin))
+      {
+        fightSelect = false;
+        goblinFight = true;
+      }
+    }
+
     if(goblinFight == true)
     {
       Raylib.BeginDrawing();
 
       Raylib.ClearBackground(Color.DARKBROWN);
+      Raylib.DrawTexture(goblinTexture, 256, 300, Color.WHITE);
 
       Raylib.EndDrawing();
+    
     }
 
 
