@@ -8,9 +8,9 @@ Raylib.SetTargetFPS(60);
 Texture2D playerTexture = Raylib.LoadTexture("Player.png");
 Rectangle player = new Rectangle(256, 192, playerTexture.width, playerTexture.height);
 Texture2D goblinTexture = Raylib.LoadTexture("Goblin.png");
-Rectangle goblin = new Rectangle(256, 192, goblinTexture.width, goblinTexture.height);
+Rectangle goblin = new Rectangle(512, 384, goblinTexture.width, goblinTexture.height);
 Texture2D snakeTexture = Raylib.LoadTexture("Snake.png");
-Rectangle snake = new Rectangle(256, 192, snakeTexture.width, snakeTexture.height);
+Rectangle snake = new Rectangle(768, 300, snakeTexture.width, snakeTexture.height);
 
 bool menu = true;
 bool fightSelect = false;
@@ -52,7 +52,7 @@ while (!Raylib.WindowShouldClose())
     player.y += movement.Y;
 
 
-    Raylib.DrawTexture(goblinTexture, 256, 300, Color.WHITE);
+    Raylib.DrawTexture(goblinTexture, 512, 384, Color.WHITE);
     Raylib.DrawTexture(snakeTexture, 768, 300, Color.WHITE);
 
     Raylib.EndDrawing();
@@ -65,6 +65,11 @@ while (!Raylib.WindowShouldClose())
         fightSelect = false;
         goblinFight = true;
       }
+      if(Raylib.CheckCollisionRecs(player, snake))
+      {
+        fightSelect = false;
+        snakeFight = true;
+      }
     }
 
     if(goblinFight == true)
@@ -72,10 +77,9 @@ while (!Raylib.WindowShouldClose())
       Raylib.BeginDrawing();
 
       Raylib.ClearBackground(Color.DARKBROWN);
-      Raylib.DrawTexture(goblinTexture, 256, 300, Color.WHITE);
+      Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
 
       Raylib.EndDrawing();
-    
     }
 
 
