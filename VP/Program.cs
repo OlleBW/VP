@@ -14,12 +14,11 @@ Rectangle snake = new Rectangle(768, 300, snakeTexture.width, snakeTexture.heigh
 
 bool menu = true;
 bool fightSelect = false;
+Random generator = new Random();
 
 bool goblinFight = false;
 int goblinHP = 100;
-
-
-bool snakeFight = false;
+int goblinATK = generator.Next(10, 25);
 
 float speed = 3f;
 Vector2 movement = new Vector2();
@@ -75,6 +74,8 @@ while (!Raylib.WindowShouldClose())
         }
     }
 
+    
+    
     if (goblinFight == true)
     {
         Raylib.BeginDrawing();
@@ -82,6 +83,7 @@ while (!Raylib.WindowShouldClose())
         Raylib.ClearBackground(Color.DARKBROWN);
         Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
         Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
+        Raylib.DrawText
         Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
 
         Raylib.EndDrawing();
