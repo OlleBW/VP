@@ -88,7 +88,6 @@ while (!Raylib.WindowShouldClose())
         Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
         Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
         Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
-        Main = true;
 
         if(Main == true);
         {
