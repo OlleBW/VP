@@ -13,7 +13,10 @@ Texture2D snakeTexture = Raylib.LoadTexture("Snake.png");
 Rectangle snake = new Rectangle(768, 300, snakeTexture.width, snakeTexture.height);
 
 bool menu = true;
+string MenuText = "Press Enter To Start";
 bool fightSelect = false;
+string EnterToFight = "Press Enter For Fight Options";
+string Abilities = "Press S For Skills and Abilities";
 Random generator = new Random();
 
 bool goblinFight = false;
@@ -32,6 +35,7 @@ while (!Raylib.WindowShouldClose())
         Raylib.BeginDrawing();
         Raylib.ClearBackground(Color.WHITE);
         Raylib.DrawRectangle(256, 192, 500, 100, Color.BLACK);
+        Raylib.DrawText(MenuText, 256, 192, 44, Color.WHITE);
         if (Raylib.IsKeyDown(KeyboardKey.KEY_ENTER))
         {
             menu = false;
@@ -67,11 +71,6 @@ while (!Raylib.WindowShouldClose())
             fightSelect = false;
             goblinFight = true;
         }
-        if (Raylib.CheckCollisionRecs(player, snake))
-        {
-            fightSelect = false;
-            snakeFight = true;
-        }
     }
 
     
@@ -83,13 +82,15 @@ while (!Raylib.WindowShouldClose())
         Raylib.ClearBackground(Color.DARKBROWN);
         Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
         Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
-        Raylib.DrawText
         Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
+       
 
         Raylib.EndDrawing();
     }
 
 
+        Raylib.DrawText(EnterToFight, 68, 512, 25, Color.BLACK);
+        Raylib.DrawText(Abilities, 68, 640, 25, Color.BLACK);
 
     static Vector2 ReadMovement(float speed)
     {
