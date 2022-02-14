@@ -17,6 +17,7 @@ string MenuText = "Press Enter To Start";
 bool fightSelect = false;
 string EnterToFight = "Press Enter For Fight Options";
 string Abilities = "Press S For Skills and Abilities";
+string Atk = "Press Enter To Attack!";
 Random generator = new Random();
 
 bool Main = false;
@@ -89,21 +90,25 @@ while (!Raylib.WindowShouldClose())
         Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
         Main = true;
 
-        if(Raylib.IsKeyDown(KeyboardKey.KEY_ENTER))
-        {
-            Main = false;
-            Fight = true;
-        }
-        if(Raylib.IsKeyDown(KeyboardKey.KEY_S))
-        {
-            Main = false;
-            Skills = true;
-        }
-        
         if(Main == true);
         {
         Raylib.DrawText(EnterToFight, 68, 512, 25, Color.BLACK);
         Raylib.DrawText(Abilities, 68, 640, 25, Color.BLACK);
+        }
+        if(Raylib.IsKeyDown(KeyboardKey.KEY_ENTER))
+        {
+            Fight = true;
+        }
+        if(Raylib.IsKeyDown(KeyboardKey.KEY_S))
+        {
+            Skills = true;
+        }
+
+
+        if(Fight == true);
+        {
+        Main = false;
+        Raylib.DrawText(Atk, 68, 512, 25, Color.BLACK);
         }
  
 
