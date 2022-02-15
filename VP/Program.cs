@@ -83,15 +83,15 @@ while(!Raylib.WindowShouldClose())
         Raylib.DrawText(EnterToFight, 68, 512, 25, Color.BLACK);
         Raylib.DrawText(Abilities, 68, 640, 25, Color.BLACK);
         Raylib.EndDrawing();
+      
+        if(Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
+        {
+            goblinFight = false;
+            Fight = true;
+        }
     }
 
-       
-    if(Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
-    {
-        goblinFight = false;
-        Fight = true;
-    }
-
+    
     if(Fight == true);
     {
         Raylib.ClearBackground(Color.DARKBROWN);
