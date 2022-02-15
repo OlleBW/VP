@@ -32,28 +32,22 @@ Vector2 movement = new Vector2();
 
 Rectangle Start = new Rectangle(100, 20, 100, 20);
 
-while (!Raylib.WindowShouldClose())
+while(!Raylib.WindowShouldClose())
 {
-    if (menu == true)
+    if(menu == true)
     {
-        Raylib.BeginDrawing();
         Raylib.ClearBackground(Color.WHITE);
         Raylib.DrawRectangle(256, 192, 500, 100, Color.BLACK);
         Raylib.DrawText(MenuText, 256, 192, 44, Color.WHITE);
-        if (Raylib.IsKeyDown(KeyboardKey.KEY_ENTER))
+        if(Raylib.IsKeyDown(KeyboardKey.KEY_ENTER))
         {
             menu = false;
             fightSelect = true;
         }
-
-        Raylib.EndDrawing();
     }
 
-    if (fightSelect == true)
+    else if(fightSelect == true)
     {
-        Raylib.BeginDrawing();
-
-
         Raylib.ClearBackground(Color.WHITE);
         Raylib.DrawTexture(playerTexture, (int)player.x, (int)player.y, Color.WHITE);
 
@@ -65,24 +59,15 @@ while (!Raylib.WindowShouldClose())
         Raylib.DrawTexture(goblinTexture, 512, 384, Color.WHITE);
         Raylib.DrawTexture(snakeTexture, 768, 300, Color.WHITE);
 
-        Raylib.EndDrawing();
-    }
-
-    if (fightSelect == true)
-    {
         if (Raylib.CheckCollisionRecs(player, goblin))
         {
             fightSelect = false;
             goblinFight = true;
         }
     }
-
     
-    
-    if(goblinFight == true)
+    else if(goblinFight == true)
     {
-        Raylib.BeginDrawing();
-
         Raylib.ClearBackground(Color.DARKBROWN);
         Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
         Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
@@ -91,36 +76,22 @@ while (!Raylib.WindowShouldClose())
         Raylib.DrawText(EnterToFight, 68, 512, 25, Color.BLACK);
         Raylib.DrawText(Abilities, 68, 640, 25, Color.BLACK);
        
-        if(Raylib.IsKeyDown(KeyboardKey.KEY_ENTER))
+        if(Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
         {
             goblinFight = false;
             Fight = true;
         }
-        if(Raylib.IsKeyDown(KeyboardKey.KEY_S))
-        {
-            goblinFight = false;
-            Skills = true;
-        }
-
-        Raylib.EndDrawing();
     }
-
-
 
     if(Fight == true);
     {
-        Raylib.BeginDrawing();
-
         Raylib.ClearBackground(Color.DARKBROWN);
         Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
         Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
         Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
        
         Raylib.DrawText(Atk, 68, 512, 25, Color.BLACK);
-        
-        Raylib.EndDrawing();
     }
- 
 
 
 
@@ -135,5 +106,4 @@ while (!Raylib.WindowShouldClose())
 
         return movement;
     }
-
 }
