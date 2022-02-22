@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "mZo04xaMNuP8ZN7LJ5fZ45mUq5O7I+lD4aunK8yCoTpzMzr08NHv5bZe8n5a7NBbZsZouCBfqnRqJZojxX6z8g==",
+  "dgSpecHash": "MAfv3hGEpTuuiQ3D0Ak95FL5htMpuJNCGZ/wB3wCY4tILl0OZ/pb/cLH/2x7WHpSpoagdSLODuCuMOTy1QI7tg==",
   "success": true,
   "projectFilePath": "C:\\PROG1\\VP\\VP\\VP.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\olle.brinkwennberg\\.nuget\\packages\\raylib-cs\\3.7.0.1\\raylib-cs.3.7.0.1.nupkg.sha512",
-    "C:\\Users\\olle.brinkwennberg\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512"
+    "C:\\Users\\olle.brinkwennberg\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\olle.brinkwennberg\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.14\\microsoft.netcore.app.host.win-x64.5.0.14.nupkg.sha512"
   ],
   "logs": []
 }

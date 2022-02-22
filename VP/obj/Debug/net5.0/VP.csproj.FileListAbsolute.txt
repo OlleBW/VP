@@ -3,9 +3,7 @@ C:\PROG1\VP\VP\bin\Debug\net5.0\VP.deps.json
 C:\PROG1\VP\VP\bin\Debug\net5.0\VP.runtimeconfig.json
 C:\PROG1\VP\VP\bin\Debug\net5.0\VP.runtimeconfig.dev.json
 C:\PROG1\VP\VP\bin\Debug\net5.0\VP.dll
-C:\PROG1\VP\VP\bin\Debug\net5.0\ref\VP.dll
 C:\PROG1\VP\VP\bin\Debug\net5.0\VP.pdb
-C:\PROG1\VP\VP\obj\Debug\net5.0\VP.csprojAssemblyReference.cache
 C:\PROG1\VP\VP\obj\Debug\net5.0\VP.GeneratedMSBuildEditorConfig.editorconfig
 C:\PROG1\VP\VP\obj\Debug\net5.0\VP.AssemblyInfoInputs.cache
 C:\PROG1\VP\VP\obj\Debug\net5.0\VP.AssemblyInfo.cs
@@ -20,3 +18,5 @@ C:\PROG1\VP\VP\bin\Debug\net5.0\runtimes\osx-x64\native\libraylib.dylib
 C:\PROG1\VP\VP\bin\Debug\net5.0\runtimes\win-x64\native\raylib.dll
 C:\PROG1\VP\VP\bin\Debug\net5.0\runtimes\win-x86\native\raylib.dll
 C:\PROG1\VP\VP\obj\Debug\net5.0\VP.csproj.CopyComplete
+C:\PROG1\VP\VP\obj\Debug\net5.0\VP.csproj.AssemblyReference.cache
+C:\PROG1\VP\VP\obj\Debug\net5.0\refint\VP.dll
