@@ -20,7 +20,7 @@ string Abilities = "Press S For Skills and Abilities";
 string gobHPleft = "The goblins HP is now ";
 string gobHPleft2 = "Press C To Continue";
 string playerHPleft = "Your HP is now ";
-string playerHPleft2 = "Press C To Continue";
+string playerHPleft2 = "Press ENTER To Continue";
 Rectangle Start = new Rectangle(100, 20, 100, 20);
 Random generator = new Random();
 int playerHP = 100;
@@ -131,6 +131,8 @@ while (!Raylib.WindowShouldClose())
                     Raylib.DrawText(playerHPleft + playerHP.ToString(), 68, 512, 25, Color.BLACK);
                     Raylib.DrawText(playerHPleft2, 68, 542, 25, Color.BLACK);
                     Raylib.EndDrawing();
+
+                    playerTurn = true;
                 }
             }
             if (Skills == true)
