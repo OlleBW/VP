@@ -67,9 +67,6 @@ while (!Raylib.WindowShouldClose())
         Raylib.DrawTexture(goblinTexture, 512, 384, Color.WHITE);
         Raylib.DrawTexture(snakeTexture, 768, 300, Color.WHITE);
         Raylib.EndDrawing();
-    }
-    if (fightSelect == true)
-    {
         if (Raylib.CheckCollisionRecs(player, goblin))
         {
             Fight = true;
@@ -78,7 +75,7 @@ while (!Raylib.WindowShouldClose())
         }
     }
 
-    if (Fight == true)
+    while (Fight == true)
     {
         if (gobFight == true)
         {
@@ -97,57 +94,57 @@ while (!Raylib.WindowShouldClose())
                 gobFight = false;
                 FightOptions = true;
             }
+        }
 
-            if (FightOptions == true)
+        if (FightOptions == true)
+        {
+            if (playerTurn == true && Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
             {
-                if (playerTurn == true && Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
-                {
-                    playerTurn = false;
-                    goblinHP = goblinHP - playerATK;
+                playerTurn = false;
+                goblinHP = goblinHP - playerATK;
 
-                    Raylib.BeginDrawing();
-                    Raylib.ClearBackground(Color.DARKBROWN);
-                    Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
-                    Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
-                    Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
-
-                    Raylib.DrawText(gobHPleft + goblinHP.ToString(), 68, 512, 25, Color.BLACK);
-                    Raylib.DrawText(gobHPleft2, 68, 542, 25, Color.BLACK);
-                    Raylib.EndDrawing();
-
-                    gobTurn = true;
-                }
-
-                if (Raylib.IsKeyPressed(KeyboardKey.KEY_C) && gobTurn == true)
-                {
-                    playerHP = playerHP - goblinATK;
-
-                    Raylib.BeginDrawing();
-                    Raylib.ClearBackground(Color.DARKBROWN);
-                    Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
-                    Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
-                    Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
-
-                    Raylib.DrawText(playerHPleft + playerHP.ToString(), 68, 512, 25, Color.BLACK);
-                    Raylib.DrawText(playerHPleft2, 68, 542, 25, Color.BLACK);
-                    Raylib.EndDrawing();
-
-                    playerTurn = true;
-                }
-            }
-            if (Skills == true)
-            {
                 Raylib.BeginDrawing();
-
                 Raylib.ClearBackground(Color.DARKBROWN);
                 Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
                 Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
                 Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
-                Raylib.DrawText(Heal, 68, 512, 25, Color.BLACK);
 
-
+                Raylib.DrawText(gobHPleft + goblinHP.ToString(), 68, 512, 25, Color.BLACK);
+                Raylib.DrawText(gobHPleft2, 68, 542, 25, Color.BLACK);
                 Raylib.EndDrawing();
+
+                gobTurn = true;
             }
+
+            if (Raylib.IsKeyPressed(KeyboardKey.KEY_C) && gobTurn == true)
+            {
+                playerHP = playerHP - goblinATK;
+
+                Raylib.BeginDrawing();
+                Raylib.ClearBackground(Color.DARKBROWN);
+                Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
+                Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
+                Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
+
+                Raylib.DrawText(playerHPleft + playerHP.ToString(), 68, 512, 25, Color.BLACK);
+                Raylib.DrawText(playerHPleft2, 68, 542, 25, Color.BLACK);
+                Raylib.EndDrawing();
+
+                gobFight = true;
+            }
+        }
+        if (Skills == true)
+        {
+            Raylib.BeginDrawing();
+
+            Raylib.ClearBackground(Color.DARKBROWN);
+            Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
+            Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
+            Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
+            Raylib.DrawText(Heal, 68, 512, 25, Color.BLACK);
+
+
+            Raylib.EndDrawing();
         }
     }
 
