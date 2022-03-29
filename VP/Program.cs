@@ -12,17 +12,20 @@ Rectangle goblin = new Rectangle(512, 384, goblinTexture.width, goblinTexture.he
 Texture2D snakeTexture = Raylib.LoadTexture("Snake.png");
 Rectangle snake = new Rectangle(768, 300, snakeTexture.width, snakeTexture.height);
 
+Rectangle Start = new Rectangle(100, 20, 100, 20);
+
+Random generator = new Random();
+
 Vector2 movement = new Vector2();
-string MenuText = "Press ENTER To Start";
-string Heal = "Press ENTER to Heal";
-string EnterToFight = "Press ENTER For Fight Options";
-string Abilities = "Press S For Skills and Abilities";
+string menuText = "Press ENTER To Start";
+string heal = "Press ENTER to Heal";
+string enterToFight = "Press ENTER For Fight Options";
+string enterToAttack = "Press ENTER for normal Attack";
+string abilitiesTxt = "Press S For Skills and Abilities";
 string gobHPleft = "The goblins HP is now ";
 string gobHPleft2 = "Press C To Continue";
 string playerHPleft = "Your HP is now ";
-string playerHPleft2 = "Press ENTER To Continue";
-Rectangle Start = new Rectangle(100, 20, 100, 20);
-Random generator = new Random();
+string enterToContinue = "Press ENTER To Continue";
 int playerHP = 100;
 int playerATK = generator.Next(10, 50);
 int goblinHP = 100;
@@ -44,7 +47,7 @@ while (!Raylib.WindowShouldClose())
         Raylib.BeginDrawing();
         Raylib.ClearBackground(Color.WHITE);
         Raylib.DrawRectangle(256, 192, 500, 100, Color.BLACK);
-        Raylib.DrawText(MenuText, 256, 192, 40, Color.WHITE);
+        Raylib.DrawText(menuText, 256, 192, 40, Color.WHITE);
         if (Raylib.IsKeyDown(KeyboardKey.KEY_ENTER))
         {
             menu = false;
@@ -86,8 +89,8 @@ while (!Raylib.WindowShouldClose())
             Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
             Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
 
-            Raylib.DrawText(EnterToFight, 68, 512, 25, Color.BLACK);
-            Raylib.DrawText(Abilities, 68, 640, 25, Color.BLACK);
+            Raylib.DrawText(enterToFight, 68, 512, 25, Color.BLACK);
+            Raylib.DrawText(abilitiesTxt, 68, 640, 25, Color.BLACK);
             Raylib.EndDrawing();
             if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
             {
@@ -103,8 +106,9 @@ while (!Raylib.WindowShouldClose())
             Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
             Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
             Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
+            Raylib.DrawText(enterToAttack, 68, 512, 25, Color.BLACK);
             Raylib.EndDrawing();
-            if (playerTurn == true && Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
+            if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER) && playerTurn == true)
             {
                 playerTurn = false;
                 goblinHP = goblinHP - playerATK;
@@ -124,7 +128,7 @@ while (!Raylib.WindowShouldClose())
             Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
             Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
             Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
-            Raylib.DrawText(Heal, 68, 512, 25, Color.BLACK);
+            Raylib.DrawText(heal, 68, 512, 25, Color.BLACK);
 
 
             Raylib.EndDrawing();
