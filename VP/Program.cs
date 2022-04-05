@@ -111,7 +111,7 @@ while (!Raylib.WindowShouldClose())
                 Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
                 Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
                 Raylib.DrawText(enterToAttack, 68, 512, 25, Color.BLACK);
-                if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER) && playerTurn == true)
+                if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
                 {
                     playerTurn = false;
                     goblinHP = goblinHP - playerATK;
