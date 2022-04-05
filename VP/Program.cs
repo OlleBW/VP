@@ -35,9 +35,9 @@ bool skills = false;
 bool menu = true;
 bool gobFight = false;
 bool fightSelect = false;
-bool startOptions = false;
+bool startOptions = true;
 bool fightOptions = false;
-bool playerTurn = false;
+bool playerTurn = true;
 bool gobTurn = false;
 
 while (!Raylib.WindowShouldClose())
@@ -79,61 +79,88 @@ while (!Raylib.WindowShouldClose())
 
     if (gobFight == true)
     {
-        startOptions = true;
-        if (startOptions == true)
-        {
-            playerTurn = true;
-            Raylib.BeginDrawing();
-            Raylib.ClearBackground(Color.DARKBROWN);
-            Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
-            Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
-            Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
-
-            Raylib.DrawText(enterToFight, 68, 512, 25, Color.BLACK);
-            Raylib.DrawText(abilitiesTxt, 68, 640, 25, Color.BLACK);
-            Raylib.EndDrawing();
-            if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
-            {
-                startOptions = false;
-                fightOptions = true;
-            }
-        }
-
-        if (fightOptions == true)
+        if (playerTurn == true)
         {
             Raylib.BeginDrawing();
-            Raylib.ClearBackground(Color.DARKBROWN);
-            Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
-            Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
-            Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
-            Raylib.DrawText(enterToAttack, 68, 512, 25, Color.BLACK);
-            Raylib.EndDrawing();
-            if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER) && playerTurn == true)
+            if (startOptions == true)
             {
-                playerTurn = false;
-                goblinHP = goblinHP - playerATK;
+                Raylib.ClearBackground(Color.DARKBROWN);
+                Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
+                Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
+                Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
 
-                Raylib.DrawText(gobHPleft + goblinHP.ToString(), 68, 512, 25, Color.BLACK);
-                Raylib.DrawText(gobHPleft2, 68, 542, 25, Color.BLACK);
+                Raylib.DrawText(enterToFight, 68, 512, 25, Color.BLACK);
+                Raylib.DrawText(abilitiesTxt, 68, 640, 25, Color.BLACK);
+                if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
+                {
+                    startOptions = false;
+                    fightOptions = true;
+                }
+                if (Raylib.IsKeyPressed(KeyboardKey.KEY_S))
+                {
+                    startOptions = false;
+                    skills = true;
+                }
                 Raylib.EndDrawing();
-
-                gobTurn = true;
             }
-        }
-        if (skills == true)
-        {
-            Raylib.BeginDrawing();
 
-            Raylib.ClearBackground(Color.DARKBROWN);
-            Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
-            Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
-            Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
-            Raylib.DrawText(heal, 68, 512, 25, Color.BLACK);
+            if (fightOptions == true)
+            {
+                Raylib.ClearBackground(Color.DARKBROWN);
+                Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
+                Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
+                Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
+                Raylib.DrawText(enterToAttack, 68, 512, 25, Color.BLACK);
+                if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER) && playerTurn == true)
+                {
+                    playerTurn = false;
+                    goblinHP = goblinHP - playerATK;
+
+                    Raylib.DrawText(gobHPleft + goblinHP.ToString(), 68, 512, 25, Color.BLACK);
+                    Raylib.DrawText(gobHPleft2, 68, 542, 25, Color.BLACK);
+                    Raylib.EndDrawing();
+
+                    gobTurn = true;
+                }
+                Raylib.EndDrawing();
+            }
+            if (skills == true)
+            {
+                Raylib.BeginDrawing();
+
+                Raylib.ClearBackground(Color.DARKBROWN);
+                Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
+                Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
+                Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
+                Raylib.DrawText(heal, 68, 512, 25, Color.BLACK);
 
 
-            Raylib.EndDrawing();
+                Raylib.EndDrawing();
+            }
         }
     }
+
+    // if fightnow == true
+    // if din turn
+    // kolla om vi är i anfallsläge
+    // kolla om trycker på attack-knapp
+    // gör skada
+    // Ändra vems tur det är
+
+    // kolla om vi trycker på skills-knapp
+    // ändra till skills-läge
+    // kolla om vi är i skills-läge
+    // Visa skills
+    // Kolla om vi trycker på skills-knapp
+    // Använd skill
+    // Ändra vems tur det är
+    // Kolla om vi trycker på anfallsknapp
+    // ändra till anfallsläge
+
+    // om fiendens tur
+    // timer?
+    // gör skada
+    // ändra vems tur det är
 
     static Vector2 ReadMovement(float speed)
     {
