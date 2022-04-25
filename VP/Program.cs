@@ -23,7 +23,7 @@ string enterToFight = "Press ENTER For Fight Options";
 string enterToAttack = "Press ENTER for normal Attack";
 string abilitiesTxt = "Press S For Skills and Abilities";
 string gobHPleft = "The goblins HP is now ";
-string gobHPleft2 = "Press C To Continue";
+string pressEnter = "Press ENTER To Continue";
 string playerHPleft = "Your HP is now ";
 string enterToContinue = "Press ENTER To Continue";
 int playerHP = 100;
@@ -39,6 +39,7 @@ bool startOptions = true;
 bool fightOptions = false;
 bool playerTurn = true;
 bool gobTurn = false;
+bool gobTurn2 = false;
 
 while (!Raylib.WindowShouldClose())
 {
@@ -115,9 +116,6 @@ while (!Raylib.WindowShouldClose())
                     fightOptions = false;
                     playerTurn = false;
                     goblinHP = goblinHP - playerATK;
-
-                    Raylib.DrawText(gobHPleft + goblinHP.ToString(), 68, 512, 25, Color.BLACK);
-                    Raylib.DrawText(gobHPleft2, 68, 542, 25, Color.BLACK);
                     Raylib.EndDrawing();
 
                     gobTurn = true;
@@ -143,6 +141,30 @@ while (!Raylib.WindowShouldClose())
             Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
             Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
             Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
+
+            Raylib.DrawText(gobHPleft + goblinHP.ToString(), 68, 512, 25, Color.BLACK);
+            Raylib.DrawText(pressEnter, 68, 542, 25, Color.BLACK);
+
+            if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
+            {
+                gobTurn = false;
+                gobTurn2 = true;
+            }
+
+            Raylib.EndDrawing();
+        }
+        if (gobTurn2 == true)
+        {
+            Raylib.BeginDrawing();
+
+            Raylib.ClearBackground(Color.DARKBROWN);
+            Raylib.DrawTexture(goblinTexture, 768, 192, Color.WHITE);
+            Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
+            Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
+
+            playerHP = playerHP - goblinATK;
+            Raylib.DrawText(playerHPleft + playerHP.ToString(), 68, 512, 25, Color.BLACK);
+            Raylib.DrawText(pressEnter, 68, 542, 25, Color.BLACK);
 
             Raylib.EndDrawing();
         }
