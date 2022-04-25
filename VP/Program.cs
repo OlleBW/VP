@@ -116,7 +116,6 @@ while (!Raylib.WindowShouldClose())
                     fightOptions = false;
                     playerTurn = false;
                     goblinHP = goblinHP - playerATK;
-                    Raylib.EndDrawing();
 
                     gobTurn = true;
                 }
@@ -150,7 +149,7 @@ while (!Raylib.WindowShouldClose())
                 gobTurn = false;
                 gobTurn2 = true;
             }
-
+            
             Raylib.EndDrawing();
         }
         if (gobTurn2 == true)
