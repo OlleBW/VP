@@ -22,9 +22,9 @@ string heal = "Press ENTER to Heal";
 string enterToFight = "Press ENTER For Fight Options";
 string enterToAttack = "Press ENTER for normal Attack";
 string abilitiesTxt = "Press S For Skills and Abilities";
-string gobHPleft = "The goblins HP is now ";
+string gobHPleft = "The goblins HP is ";
 string pressEnter = "Press ENTER To Continue";
-string playerHPleft = "Your HP is now ";
+string playerHPleft = "You got attacked! Now your HP is ";
 string HP = "HP: ";
 
 string died = "You Died! Press ENTER to retry";
@@ -33,6 +33,7 @@ string victory = "You Won! Press ENTER to continue";
 float speed = 3f;
 int playerHP = 100;
 int playerATK = generator.Next(10, 50);
+int playerHeal = generator.Next(45, 50);
 int goblinHP = 100;
 int goblinATK = generator.Next(10, 25);
 
@@ -117,6 +118,10 @@ while (!Raylib.WindowShouldClose())
                     goblinHP = goblinHP - playerATK;
                     turn = turn.goblin;
                 }
+                if (Raylib.IsKeyPressed(KeyboardKey.KEY_BACKSPACE))
+                {
+                    currentMenu = menus.start;
+                }
                 Raylib.EndDrawing();
             }
             if (currentMenu == menus.skills)
@@ -127,6 +132,16 @@ while (!Raylib.WindowShouldClose())
                 Raylib.DrawRectangle(64, 512, 896, 256, Color.GRAY);
                 Raylib.DrawText(goblinHP.ToString(), 768, 255, 40, Color.BLACK);
                 Raylib.DrawText(heal, 68, 512, 25, Color.BLACK);
+                if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
+                {
+                    playerHP = playerHP + playerHeal;
+                    turn = turn.goblin;
+                }
+
+                if (Raylib.IsKeyPressed(KeyboardKey.KEY_BACKSPACE))
+                {
+                    currentMenu = menus.start;
+                }
 
                 Raylib.EndDrawing();
             }
@@ -186,19 +201,10 @@ while (!Raylib.WindowShouldClose())
             }
             Raylib.EndDrawing();
         }
-
-        if (playerHP <= 0 || goblinHP <= 0)
-        {
-            playerHP = 0;
-            goblinHP = 0;
-            currentRoom = room.fightend;
-        }
     }
 
-    else if (currentRoom == room.fightend)
+    if (currentRoom == room.fightend)
     {
-        Raylib.BeginDrawing();
-
         if (playerHP <= 0)
         {
             Raylib.ClearBackground(Color.WHITE);
