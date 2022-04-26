@@ -32,10 +32,7 @@ string victory = "You Won! Press ENTER to continue";
 
 float speed = 3f;
 int playerHP = 100;
-int playerATK = generator.Next(10, 50);
-int playerHeal = generator.Next(45, 50);
 int goblinHP = 100;
-int goblinATK = generator.Next(10, 25);
 
 
 
@@ -82,6 +79,9 @@ while (!Raylib.WindowShouldClose())
 
     if (currentRoom == room.fight)
     {
+        int playerATK = generator.Next(10, 50);
+        int playerHeal = generator.Next(45, 50);
+        int goblinATK = generator.Next(10, 25);
         if (turn == turn.player)
         {
             Raylib.BeginDrawing();
@@ -205,26 +205,33 @@ while (!Raylib.WindowShouldClose())
 
     if (currentRoom == room.fightend)
     {
+        Raylib.BeginDrawing();
+        Raylib.ClearBackground(Color.WHITE);
         if (playerHP <= 0)
         {
-            Raylib.ClearBackground(Color.WHITE);
             Raylib.DrawText(died, 256, 192, 40, Color.BLACK);
             if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
             {
                 playerHP = 100;
                 goblinHP = 100;
+                turn = turn.player;
+                currentMenu = menus.start;
                 currentRoom = room.fight;
             }
+            Raylib.EndDrawing();
         }
         if (goblinHP <= 0)
         {
-            Raylib.ClearBackground(Color.WHITE);
             Raylib.DrawText(victory, 256, 192, 40, Color.BLACK);
             if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
             {
                 playerHP = 100;
+                goblinHP = 100;
+                turn = turn.player;
+                currentMenu = menus.start;
                 currentRoom = room.fightselect;
             }
+            Raylib.EndDrawing();
         }
     }
 }
