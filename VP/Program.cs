@@ -147,7 +147,14 @@ while (!Raylib.WindowShouldClose())
             if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
             {
                 playerHP = playerHP - goblinATK;
-                turn = turn.goblinResult;
+                if (goblinHP <= 0)
+                {
+                    currentRoom = room.fightend;
+                }
+                else if (goblinHP >= 0)
+                {
+                    turn = turn.goblinResult;
+                }
             }
 
             Raylib.EndDrawing();
@@ -167,37 +174,51 @@ while (!Raylib.WindowShouldClose())
 
             if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
             {
-                turn = turn.player;
-                currentMenu = menus.start;
+                if (playerHP <= 0)
+                {
+                    currentRoom = room.fightend;
+                }
+                else if (playerHP >= 0)
+                {
+                    turn = turn.player;
+                    currentMenu = menus.start;
+                }
             }
-
             Raylib.EndDrawing();
         }
 
         if (playerHP <= 0 || goblinHP <= 0)
         {
+            playerHP = 0;
+            goblinHP = 0;
             currentRoom = room.fightend;
         }
     }
+
     else if (currentRoom == room.fightend)
     {
+        Raylib.BeginDrawing();
+
         if (playerHP <= 0)
         {
             Raylib.ClearBackground(Color.WHITE);
             Raylib.DrawText(died, 256, 192, 40, Color.BLACK);
+            if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
+            {
+                playerHP = 100;
+                goblinHP = 100;
+                currentRoom = room.fight;
+            }
         }
         if (goblinHP <= 0)
         {
             Raylib.ClearBackground(Color.WHITE);
             Raylib.DrawText(victory, 256, 192, 40, Color.BLACK);
-
-        }
-
-        if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
-        {
-            playerHP = 100;
-            goblinHP = 100;
-            currentRoom = room.fight;
+            if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
+            {
+                playerHP = 100;
+                currentRoom = room.fightselect;
+            }
         }
     }
 }
