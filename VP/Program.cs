@@ -45,9 +45,13 @@ bool playerTurn = true;
 bool gobTurn = false;
 bool gobTurn2 = false;
 
+
+room currentRoom = room.menu;
+
+
 while (!Raylib.WindowShouldClose())
 {
-    if (menu == true)
+    if (currentRoom == room.menu)
     {
         Raylib.BeginDrawing();
         Raylib.ClearBackground(Color.WHITE);
@@ -55,13 +59,12 @@ while (!Raylib.WindowShouldClose())
         Raylib.DrawText(menuText, 256, 192, 40, Color.WHITE);
         if (Raylib.IsKeyDown(KeyboardKey.KEY_ENTER))
         {
-            menu = false;
-            fightSelect = true;
+            currentRoom = room.fightselect;
         }
         Raylib.EndDrawing();
     }
 
-    if (fightSelect == true)
+    if (currentRoom == room.fightselect)
     {
         Raylib.BeginDrawing();
         Raylib.DrawText(HP + playerHP, 40, 40, 40, Color.BLACK);
@@ -78,12 +81,11 @@ while (!Raylib.WindowShouldClose())
         Raylib.EndDrawing();
         if (Raylib.CheckCollisionRecs(player, goblin))
         {
-            fightSelect = false;
-            gobFight = true;
+            currentRoom = room.fight;
         }
     }
 
-    if (gobFight == true)
+    if (currentRoom == room.fight)
     {
         if (playerTurn == true)
         {
@@ -140,7 +142,6 @@ while (!Raylib.WindowShouldClose())
                 Raylib.EndDrawing();
             }
         }
-
         if (gobTurn == true)
         {
             Raylib.BeginDrawing();
@@ -185,42 +186,32 @@ while (!Raylib.WindowShouldClose())
             Raylib.EndDrawing();
         }
 
-
+        if (playerHP <= 0 || goblinHP <= 0)
+        {
+            currentRoom = room.fightend;
+        }
+    }
+    else if (currentRoom == room.fightend)
+    {
         if (playerHP <= 0)
         {
             Raylib.ClearBackground(Color.WHITE);
             Raylib.DrawText(died, 256, 192, 40, Color.BLACK);
-            gobFight = false;
         }
         if (goblinHP <= 0)
         {
             Raylib.ClearBackground(Color.WHITE);
             Raylib.DrawText(victory, 256, 192, 40, Color.BLACK);
-            gobFight = false;
+
+        }
+
+        if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
+        {
+            playerHP = 100;
+            goblinHP = 100;
+            currentRoom = room.fight;
         }
     }
-
-    // if fightnow == true
-    // if din turn
-    // kolla om vi är i anfallsläge
-    // kolla om trycker på attack-knapp
-    // gör skada
-    // Ändra vems tur det är
-
-    // kolla om vi trycker på skills-knapp
-    // ändra till skills-läge
-    // kolla om vi är i skills-läge
-    // Visa skills
-    // Kolla om vi trycker på skills-knapp
-    // Använd skill
-    // Ändra vems tur det är
-    // Kolla om vi trycker på anfallsknapp
-    // ändra till anfallsläge
-
-    // om fiendens tur
-    // timer?
-    // gör skada
-    // ändra vems tur det är
 }
 
 static Vector2 ReadMovement(float speed)
@@ -234,3 +225,28 @@ static Vector2 ReadMovement(float speed)
 
     return movement;
 }
+enum room { menu, fightselect, fight, fightend }
+
+
+
+// if fightnow == true
+// if din turn
+// kolla om vi är i anfallsläge
+// kolla om trycker på attack-knapp
+// gör skada
+// Ändra vems tur det är
+
+// kolla om vi trycker på skills-knapp
+// ändra till skills-läge
+// kolla om vi är i skills-läge
+// Visa skills
+// Kolla om vi trycker på skills-knapp
+// Använd skill
+// Ändra vems tur det är
+// Kolla om vi trycker på anfallsknapp
+// ändra till anfallsläge
+
+// om fiendens tur
+// timer?
+// gör skada
+// ändra vems tur det är
