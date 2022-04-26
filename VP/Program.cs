@@ -35,15 +35,12 @@ int playerHP = 100;
 int playerATK = generator.Next(10, 50);
 int goblinHP = 100;
 int goblinATK = generator.Next(10, 25);
-bool skills = false;
-bool startOptions = true;
-bool fightOptions = false;
-bool playerTurn = true;
-bool gobTurn = false;
-bool gobTurn2 = false;
+
 
 
 room currentRoom = room.menu;
+menus currentMenu = menus.start;
+turn turn = turn.player;
 
 
 while (!Raylib.WindowShouldClose())
@@ -84,10 +81,10 @@ while (!Raylib.WindowShouldClose())
 
     if (currentRoom == room.fight)
     {
-        if (playerTurn == true)
+        if (turn == turn.player)
         {
             Raylib.BeginDrawing();
-            if (startOptions == true)
+            if (currentMenu == menus.start)
             {
                 Raylib.DrawText(HP + playerHP, 40, 40, 40, Color.BLACK);
                 Raylib.ClearBackground(Color.DARKBROWN);
@@ -99,17 +96,15 @@ while (!Raylib.WindowShouldClose())
                 Raylib.DrawText(abilitiesTxt, 68, 640, 25, Color.BLACK);
                 if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
                 {
-                    startOptions = false;
-                    fightOptions = true;
+                    currentMenu = menus.atk;
                 }
                 if (Raylib.IsKeyPressed(KeyboardKey.KEY_S))
                 {
-                    startOptions = false;
-                    skills = true;
+                    currentMenu = menus.skills;
                 }
                 Raylib.EndDrawing();
             }
-            if (fightOptions == true)
+            if (currentMenu == menus.atk)
             {
                 Raylib.DrawText(HP + playerHP, 40, 40, 40, Color.BLACK);
                 Raylib.ClearBackground(Color.DARKBROWN);
@@ -119,15 +114,12 @@ while (!Raylib.WindowShouldClose())
                 Raylib.DrawText(enterToAttack, 68, 512, 25, Color.BLACK);
                 if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
                 {
-                    fightOptions = false;
-                    playerTurn = false;
                     goblinHP = goblinHP - playerATK;
-
-                    gobTurn = true;
+                    turn = turn.goblin;
                 }
                 Raylib.EndDrawing();
             }
-            if (skills == true)
+            if (currentMenu == menus.skills)
             {
                 Raylib.DrawText(HP + playerHP, 40, 40, 40, Color.BLACK);
                 Raylib.ClearBackground(Color.DARKBROWN);
@@ -139,7 +131,7 @@ while (!Raylib.WindowShouldClose())
                 Raylib.EndDrawing();
             }
         }
-        if (gobTurn == true)
+        if (turn == turn.goblin)
         {
             Raylib.BeginDrawing();
 
@@ -155,13 +147,12 @@ while (!Raylib.WindowShouldClose())
             if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
             {
                 playerHP = playerHP - goblinATK;
-                gobTurn = false;
-                gobTurn2 = true;
+                turn = turn.goblinResult;
             }
 
             Raylib.EndDrawing();
         }
-        if (gobTurn2 == true)
+        if (turn == turn.goblinResult)
         {
             Raylib.BeginDrawing();
 
@@ -176,8 +167,8 @@ while (!Raylib.WindowShouldClose())
 
             if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
             {
-                gobTurn2 = false;
-                playerTurn = true;
+                turn = turn.player;
+                currentMenu = menus.start;
             }
 
             Raylib.EndDrawing();
@@ -223,6 +214,8 @@ static Vector2 ReadMovement(float speed)
     return movement;
 }
 enum room { menu, fightselect, fight, fightend }
+enum menus { start, atk, skills }
+enum turn { player, goblin, goblinResult }
 
 
 
