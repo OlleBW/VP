@@ -203,7 +203,7 @@ while (!Raylib.WindowShouldClose())
         }
     }
 
-    if (currentRoom == room.fightend)
+    else if (currentRoom == room.fightend)
     {
         Raylib.BeginDrawing();
         Raylib.ClearBackground(Color.WHITE);
