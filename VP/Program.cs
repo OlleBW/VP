@@ -253,7 +253,7 @@ enum turn { player, goblin, goblinResult }
 
 
 
-// if fightnow == true
+// if fight == true
 // if din turn
 // kolla om vi är i anfallsläge
 // kolla om trycker på attack-knapp
@@ -271,6 +271,5 @@ enum turn { player, goblin, goblinResult }
 // ändra till anfallsläge
 
 // om fiendens tur
-// timer?
 // gör skada
 // ändra vems tur det är
